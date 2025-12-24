@@ -13,15 +13,15 @@ const ConfirmDeleteAccount = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `https://narda-delete-backend.onrender.com/api/users/confirm-delete-account/${token}`
+          `http://localhost:4055/api/users/confirm-delete-account/${token}`
         );
 
-       if (response.status === 200) {
-  setMessage(response.data.message);
-  setTimeout(() => {
-    navigate('/delete-account');
-  }, 1000);
-}
+        if (response.status === 200) {
+          setMessage(response.data.message);
+          setTimeout(() => {
+            navigate('/delete-account');
+          }, 1000);
+        }
 
       } catch (error) {
         if (error.response) {
@@ -48,9 +48,8 @@ const ConfirmDeleteAccount = () => {
           <p className="text-gray-700 mb-4">Processing your request...</p>
         ) : (
           <p
-            className={`mb-4 ${
-              message.toLowerCase().includes('success') ? 'text-green-600 font-medium' : 'text-red-600'
-            }`}
+            className={`mb-4 ${message.toLowerCase().includes('success') ? 'text-green-600 font-medium' : 'text-red-600'
+              }`}
           >
             {message}
           </p>
